@@ -9,10 +9,16 @@ RUN apt-get update \
         aptitude \
         bash \
         ca-certificates \
+        curl \
+        gcc \
         iproute2 \
         libcap2-bin \
+        libyaml-dev \
         python3-apt \
+        python3-dev \
         python3-pip \
+        python3-setuptools \
+        python3-wheel \
         software-properties-common \
         sudo \
         systemd \
@@ -23,6 +29,7 @@ RUN apt-get update \
 
 RUN pip3 install ansible q
 
-RUN mkdir -p /etc/ansible && echo '[local]\nlocalhost ansible_connection=local ansible_python_interpreter=/usr/bin/python3' > /etc/ansible/hosts
+RUN mkdir -p /etc/ansible \
+    && echo '[local]\nlocalhost ansible_connection=local ansible_python_interpreter=/usr/bin/python3' > /etc/ansible/hosts
 
 CMD ["/bin/systemd"]
